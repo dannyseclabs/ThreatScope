@@ -6,7 +6,7 @@
   :root {
     --background: 240 10% 4%;
     --foreground: 210 25% 96%;
-    --card: 240 8% 7%;
+    --card: 240 8% 8%;
     --card-foreground: 210 25% 96%;
     --popover: 240 8% 7%;
     --popover-foreground: 210 25% 96%;
@@ -14,14 +14,14 @@
     --primary-foreground: 180 18% 8%;
     --secondary: 240 7% 12%;
     --secondary-foreground: 210 20% 92%;
-    --muted: 240 7% 12%;
+    --muted: 240 7% 13%;
     --muted-foreground: 218 12% 66%;
     --accent: 229 34% 19%;
     --accent-foreground: 210 25% 96%;
     --destructive: 350 78% 56%;
     --destructive-foreground: 210 25% 96%;
-    --border: 240 7% 18%;
-    --input: 240 7% 18%;
+    --border: 240 7% 20%;
+    --input: 240 7% 20%;
     --ring: 174 76% 42%;
     --radius: 0.5rem;
   }

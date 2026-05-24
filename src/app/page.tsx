@@ -97,7 +97,10 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
-      <section className="scroll-mt-24 rounded-lg border border-border bg-card p-5 shadow-panel" id="dashboard">
+      <section
+        className="scroll-mt-24 rounded-lg border border-border/85 bg-card/95 p-5 shadow-panel ring-1 ring-white/[0.025]"
+        id="dashboard"
+      >
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase text-primary">Threat intelligence overview</p>
@@ -174,7 +177,7 @@ export default function Home() {
       <section className="grid gap-5 xl:grid-cols-[1fr_360px]">
         <div className="space-y-4">
           <div
-            className="scroll-mt-24 rounded-lg border border-border bg-card p-3"
+            className="scroll-mt-24 rounded-lg border border-border/80 bg-card/80 p-3 shadow-panel ring-1 ring-white/[0.02]"
             id="actors"
           >
             <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">

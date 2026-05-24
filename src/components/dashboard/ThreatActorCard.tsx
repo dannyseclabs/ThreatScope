@@ -13,7 +13,7 @@ type ThreatActorCardProps = {
 
 export function ThreatActorCard({ actor }: ThreatActorCardProps) {
   return (
-    <Card className="h-full transition-colors hover:border-primary/40">
+    <Card className="h-full hover:border-primary/25 hover:bg-card">
       <CardHeader>
         <div className="flex flex-wrap gap-2">
           <Badge variant="secondary">{actor.type}</Badge>
@@ -31,7 +31,7 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
         <div className="flex flex-wrap gap-2">
           {actor.targetSectors.slice(0, 3).map((sector) => (
             <span
-              className="rounded-md border border-border bg-muted/30 px-2 py-1 text-xs font-medium text-muted-foreground"
+              className="rounded-md border border-border/80 bg-muted/40 px-2 py-1 text-xs font-medium text-muted-foreground"
               key={sector}
             >
               {sector}

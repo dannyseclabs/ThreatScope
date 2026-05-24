@@ -38,7 +38,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        panel: "0 18px 50px rgba(0, 0, 0, 0.28)",
+        panel: "0 10px 28px rgba(0, 0, 0, 0.18)",
       },
     },
   },

@@ -25,7 +25,7 @@ export function MitreSnapshot() {
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {techniquePreview.map((technique) => (
             <article
-              className="rounded-lg border border-border bg-muted/25 p-4 transition-colors hover:border-primary/35"
+              className="rounded-lg border border-border/80 bg-muted/30 p-4 transition-colors hover:border-primary/25 hover:bg-muted/40"
               key={`${technique.slug}-${technique.id}`}
             >
               <div className="flex flex-wrap items-center gap-2">

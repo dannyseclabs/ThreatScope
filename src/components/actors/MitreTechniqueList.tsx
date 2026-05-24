@@ -12,7 +12,10 @@ export function MitreTechniqueList({ techniques }: { techniques: MitreTechnique[
       <CardContent>
         <div className="grid gap-3 md:grid-cols-2">
           {techniques.map((technique) => (
-            <article className="rounded-lg border border-border bg-muted/25 p-4" key={technique.id}>
+            <article
+              className="rounded-lg border border-border/80 bg-muted/30 p-4"
+              key={technique.id}
+            >
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary">{technique.id}</Badge>
                 <Badge variant="outline">{technique.tactic}</Badge>

@@ -11,7 +11,7 @@ type StatsCardProps = {
 
 export function StatsCard({ title, value, description, icon: Icon }: StatsCardProps) {
   return (
-    <Card className="transition-colors hover:border-primary/40">
+    <Card className="hover:border-primary/25 hover:bg-card">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-4">
         <CardTitle className="text-xs font-semibold uppercase leading-4 text-muted-foreground">
           {title}

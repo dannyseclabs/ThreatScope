@@ -24,7 +24,7 @@ export function ActorHeader({ actor }: { actor: ThreatActor }) {
           <div className="mt-3 flex flex-wrap gap-2">
             {actor.aliases.map((alias) => (
               <span
-                className="rounded-md border border-border bg-muted/30 px-2 py-1 text-xs text-muted-foreground"
+                className="rounded-md border border-border/80 bg-muted/40 px-2 py-1 text-xs text-muted-foreground"
                 key={alias}
               >
                 {alias}
