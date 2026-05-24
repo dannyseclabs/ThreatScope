@@ -1,25 +1,25 @@
 # ThreatScope
 
-ThreatScope is a frontend-only cybersecurity threat intelligence dashboard built as a portfolio project. It presents safe local mock intelligence for threat actors, MITRE ATT&CK techniques, malware families, IOC tables, campaign timelines, detection notes, and dashboard-level analytics.
+ThreatScope is a frontend-only cybersecurity threat intelligence dashboard built as a portfolio project. It presents a clean SOC-style interface for exploring threat actors, MITRE ATT&CK techniques, malware families, indicators of compromise, campaign timelines, and analyst detection notes.
 
-The app is intentionally defensive and educational. It does not contain offensive procedures, exploit instructions, live collection, scraping, or real threat feeds.
+The project uses safe local mock data only. It does not use real threat feeds, scraping, offensive tooling, exploit instructions, or production threat intelligence claims.
 
-## Status
+## Problem
 
-MVP is working locally.
+Threat intelligence data is often fragmented across reports, actor profiles, technique mappings, and IOC lists. ThreatScope demonstrates how that information can be organized into a focused analyst dashboard that is searchable, structured, and easy to scan.
 
-- Dashboard homepage
-- Threat actor directory
-- Client-side search and filtering
-- Dynamic actor detail pages
-- MITRE ATT&CK explorer
-- Reports placeholder route
-- Threat actor cards
-- Malware section
-- IOC table with copy actions
-- Campaign timeline
-- Detection notes for SOC analysts
-- Local mock data only
+The goal is not to provide real intelligence. The goal is to show frontend engineering, cybersecurity domain understanding, information architecture, and defensive product thinking.
+
+## Key Features
+
+- Overview dashboard with analyst status, key metrics, actor type chart, and recent campaign preview
+- Searchable and filterable threat actor directory
+- Dynamic actor profile pages at `/actors/[slug]`
+- MITRE ATT&CK explorer with tactic filtering
+- Malware, IOC, campaign, and detection-note sections
+- Reports placeholder route for future intelligence briefs
+- Responsive dark-mode SOC dashboard UI
+- Local TypeScript mock data with realistic defensive terminology
 
 ## Tech Stack
 
@@ -31,110 +31,27 @@ MVP is working locally.
 - Recharts
 - Framer Motion
 
-## Project Scope
+## Screenshots
 
-ThreatScope is a frontend-first app. The current MVP deliberately avoids:
+Add screenshots after deployment or final visual polish.
 
-- Backend services
-- Database
-- Authentication
-- Accounts or roles
-- Payment or SaaS flows
-- External APIs
-- Live threat feeds
-- Scraping
-- Uploads
-- Admin panel
-- Offensive security instructions
+| Dashboard | Actor Directory |
+| --- | --- |
+| `screenshots/dashboard.png` | `screenshots/actors.png` |
 
-This keeps the project clean, reviewable, safe, and portfolio-oriented.
+| Actor Profile | ATT&CK Explorer |
+| --- | --- |
+| `screenshots/actor-profile.png` | `screenshots/attack.png` |
 
-## Features
+## Routes
 
-### Dashboard
+- `/` - overview dashboard
+- `/actors` - searchable actor directory
+- `/actors/[slug]` - full actor profile
+- `/attack` - MITRE ATT&CK technique explorer
+- `/reports` - reports module placeholder
 
-The dashboard gives a compact SOC-style overview:
-
-- Tracked actors
-- Critical threats
-- Active campaigns
-- Known IOCs
-- Actor type chart
-- Recent campaign timeline
-- Priority actor preview
-- Link to the ATT&CK explorer
-
-### Actor Directory
-
-The actor directory lives at `/actors` and provides:
-
-- Actor search
-- Severity filters
-- Actor type filters
-- Responsive actor card grid
-- Empty state
-- Reset filters action
-
-### Threat Actor Profiles
-
-Each actor has a profile page at `/actors/[slug]` with:
-
-- Actor header
-- Aliases
-- Type and severity
-- Attributed country
-- Overview
-- Motivation
-- Target sectors and regions
-- MITRE ATT&CK techniques
-- Malware families
-- IOC table
-- Campaign timeline
-- Detection notes
-
-### Search And Filtering
-
-Actor directory search is client-side and searches across:
-
-- Actor name
-- Aliases
-- Country
-- Type
-- Severity
-- Target sectors
-- Target regions
-- Motivation
-- MITRE technique IDs, names, tactics, and descriptions
-- Malware names and descriptions
-- Campaign titles and descriptions
-- IOC values and notes
-
-Filters support severity and actor type.
-
-### MITRE ATT&CK Explorer
-
-The ATT&CK explorer lives at `/attack` and provides:
-
-- Technique cards
-- Search by ID, name, tactic, actor, or description
-- Filter by tactic
-- Links back to related actor profiles
-
-### Reports
-
-The reports page lives at `/reports`. It is intentionally a placeholder for future local mock intelligence briefs and does not include backend workflows.
-
-## Mock Dataset
-
-The MVP includes three safe local actor profiles:
-
-- Lazarus Group
-- LockBit
-- APT28 / Fancy Bear
-
-All indicators are mock, defanged, or documentation-range examples.
-
-## Getting Started
+## Run Locally
 
 Install dependencies:
 
@@ -142,7 +59,7 @@ Install dependencies:
 npm install
 ```
 
-Run the dev server:
+Start the development server:
 
 ```bash
 npm run dev
@@ -154,15 +71,13 @@ Open:
 http://localhost:3000
 ```
 
-## Available Scripts
+Quality checks:
 
 ```bash
-npm run dev
-npm run build
 npm run lint
+npm run build
+npm audit --omit=dev
 ```
-
-Use `npm run build` before publishing or deploying.
 
 ## Project Structure
 
@@ -173,17 +88,17 @@ threatscope/
 │   │   ├── page.tsx
 │   │   ├── layout.tsx
 │   │   ├── globals.css
-│   │   ├── not-found.tsx
+│   │   ├── actors/
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx
 │   │   ├── attack/
 │   │   │   └── page.tsx
-│   │   ├── reports/
-│   │   │   └── page.tsx
-│   │   └── actors/
-│   │       ├── page.tsx
-│   │       └── [slug]/
-│   │           └── page.tsx
+│   │   └── reports/
+│   │       └── page.tsx
 │   ├── components/
 │   │   ├── actors/
+│   │   ├── attack/
 │   │   ├── dashboard/
 │   │   ├── layout/
 │   │   └── ui/
@@ -197,59 +112,52 @@ threatscope/
 └── tailwind.config.ts
 ```
 
+## Cybersecurity Learning Goals
+
+- Model threat actor profiles using structured TypeScript data
+- Understand common threat intelligence concepts such as attribution, motivation, target sectors, IOCs, malware families, and campaigns
+- Map actor behavior to MITRE ATT&CK-style techniques
+- Design defensive SOC workflows around triage, search, and analyst context
+- Communicate cybersecurity information without providing offensive operational detail
+
+## What I Learned
+
+- How to turn cybersecurity domain data into a usable dashboard experience
+- How to design a multi-page Next.js App Router portfolio app
+- How to structure local mock data for reusable UI components
+- How to balance dashboard density with readability and responsiveness
+- How to keep cybersecurity content defensive, educational, and safe for public display
+
+## Future Roadmap
+
+- Add more safe mock threat actor profiles
+- Add screenshots and deployed demo links
+- Expand local report previews
+- Add additional chart views from local data
+- Improve visual QA across more viewport sizes
+- Add optional local-only saved filter state
+- Consider backend or external integrations only after the frontend MVP is stable
+
+## Disclaimer
+
+ThreatScope is a portfolio and learning project. It uses safe local mock data only.
+
+It does not provide:
+
+- Real threat intelligence feeds
+- Production-ready threat intelligence
+- Offensive tooling
+- Exploit instructions
+- Live indicators
+- Scraping
+- Backend collection
+- Authentication or user accounts
+
+All examples are defensive, educational, and designed for frontend portfolio demonstration.
+
 ## Documentation
 
 - [Architecture](docs/architecture.md)
 - [Data Model](docs/data-model.md)
 - [Development Guide](docs/development.md)
 - [Scope And Safety](docs/scope-and-safety.md)
-
-## Quality Checks
-
-Current verification targets:
-
-```bash
-npm run lint
-npm run build
-npm audit --omit=dev
-```
-
-Expected route behavior:
-
-- `/` returns the dashboard
-- `/actors` returns the searchable actor directory
-- `/actors/lazarus-group` returns the Lazarus profile
-- `/actors/lockbit` returns the LockBit profile
-- `/actors/apt28-fancy-bear` returns the APT28 profile
-- `/attack` returns the ATT&CK explorer
-- `/reports` returns the reports placeholder
-- Unknown actor slugs return the custom not-found state
-
-## Extending The Dataset
-
-Add new actor profiles in:
-
-```text
-src/data/threat-actors.ts
-```
-
-Follow the `ThreatActor` type in:
-
-```text
-src/types/threat.ts
-```
-
-Keep all future examples defensive, educational, and safe for public portfolio display.
-
-## Roadmap
-
-Near-term improvements should stay frontend-only:
-
-- Add more mock threat actors
-- Add saved local UI presets with browser state
-- Add richer empty states
-- Add more chart views from local data
-- Add screenshots to this README
-- Improve responsive visual QA
-
-Avoid backend, auth, database, live feeds, external APIs, or scraping until the MVP is stable and the scope is intentionally expanded.
