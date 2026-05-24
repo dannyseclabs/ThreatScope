@@ -13,7 +13,7 @@ type ThreatActorCardProps = {
 
 export function ThreatActorCard({ actor }: ThreatActorCardProps) {
   return (
-    <Card className="h-full hover:border-primary/25 hover:bg-card">
+    <Card className="surface-hover h-full">
       <CardHeader>
         <div className="flex flex-wrap gap-2">
           <Badge variant="secondary">{actor.type}</Badge>
@@ -38,7 +38,7 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
             </span>
           ))}
         </div>
-        <Button asChild className="w-full" variant="outline">
+        <Button asChild className="w-full justify-between" variant="outline">
           <Link href={`/actors/${actor.slug}`}>
             View profile
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

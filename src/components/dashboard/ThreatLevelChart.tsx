@@ -58,8 +58,11 @@ export function ThreatLevelChart() {
               </Pie>
             </PieChart>
           ) : (
-            <div className="flex h-full items-center justify-center text-xs font-medium text-muted-foreground">
-              Preparing chart
+            <div className="flex h-full w-full items-center justify-center">
+              <div className="relative h-36 w-36 animate-pulse rounded-full border-[22px] border-muted/80">
+                <div className="absolute inset-8 rounded-full bg-card" />
+                <span className="sr-only">Preparing actor type chart</span>
+              </div>
             </div>
           )}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

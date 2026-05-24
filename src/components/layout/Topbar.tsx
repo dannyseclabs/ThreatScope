@@ -87,8 +87,8 @@ export function Topbar() {
           return (
             <Link
               className={cn(
-                "flex items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
-                isActive && "bg-accent text-foreground",
+                "flex items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring",
+                isActive && "border border-primary/20 bg-accent text-foreground",
               )}
               href={item.href}
               key={item.label}

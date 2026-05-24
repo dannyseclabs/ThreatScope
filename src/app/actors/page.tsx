@@ -1,7 +1,7 @@
 import { ActorDirectory } from "@/components/actors/ActorDirectory";
 
 export const metadata = {
-  title: "Threat Actors | ThreatScope",
+  title: "Threat Actors",
   description: "Search and filter local mock threat actor profiles.",
 };
 

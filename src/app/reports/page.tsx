@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { reportPreviews } from "@/data/reports";
 
 export const metadata = {
-  title: "Reports | ThreatScope",
-  description: "Placeholder report module for future local mock intelligence briefs.",
+  title: "Reports",
+  description: "Static local mock intelligence briefs for the ThreatScope portfolio dashboard.",
 };
 
 export default function ReportsPage() {
@@ -17,17 +17,17 @@ export default function ReportsPage() {
       <section className="rounded-lg border border-border/85 bg-card/95 p-5 shadow-panel ring-1 ring-white/[0.025]">
         <p className="text-xs font-semibold uppercase text-primary">Reports</p>
         <h1 className="mt-2 text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-          Reports module coming later
+          Mock intelligence briefs
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-          This route is reserved for future portfolio-friendly intelligence briefs. No backend,
-          uploads, external feeds, or report generation is included in the current MVP.
+          Static portfolio-friendly reports built from local mock data. No backend, uploads,
+          external feeds, or report generation is included in the current MVP.
         </p>
       </section>
 
       <section className="grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {reportPreviews.map((report) => (
-          <Card className="h-full hover:border-primary/25 hover:bg-card" key={report.title}>
+          <Card className="surface-hover h-full" key={report.title}>
             <CardHeader>
               <div className="flex items-center justify-between gap-3">
                 <span className="rounded-md border border-primary/25 bg-primary/10 p-2 text-primary">
@@ -39,7 +39,7 @@ export default function ReportsPage() {
               <CardDescription>{report.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild className="w-full" variant="outline">
+              <Button asChild className="w-full justify-between" variant="outline">
                 <Link href={`/reports/${report.slug}`}>
                   Open brief
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

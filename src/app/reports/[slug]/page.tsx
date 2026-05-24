@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getReportBySlug, reportPreviews } from "@/data/reports";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return reportPreviews.map((report) => ({
     slug: report.slug,
@@ -19,12 +21,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!report) {
     return {
-      title: "Report Not Found | ThreatScope",
+      title: "Report Not Found",
     };
   }
 
   return {
-    title: `${report.title} | ThreatScope`,
+    title: report.title,
     description: report.description,
   };
 }

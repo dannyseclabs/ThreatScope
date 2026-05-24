@@ -1,7 +1,7 @@
 import { AttackExplorer } from "@/components/attack/AttackExplorer";
 
 export const metadata = {
-  title: "MITRE ATT&CK Explorer | ThreatScope",
+  title: "MITRE ATT&CK Explorer",
   description: "Explore locally mapped MITRE ATT&CK techniques across tracked actors.",
 };
 

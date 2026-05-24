@@ -12,6 +12,8 @@ import { MitreTechniqueList } from "@/components/actors/MitreTechniqueList";
 import { Button } from "@/components/ui/button";
 import { getActorBySlug, threatActors } from "@/data/threat-actors";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return threatActors.map((actor) => ({
     slug: actor.slug,
@@ -24,12 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!actor) {
     return {
-      title: "Actor Not Found | ThreatScope",
+      title: "Actor Not Found",
     };
   }
 
   return {
-    title: `${actor.name} | ThreatScope`,
+    title: actor.name,
     description: actor.summary,
   };
 }

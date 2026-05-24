@@ -89,7 +89,7 @@ export function AttackExplorer() {
         <div className="grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filteredTechniques.map((technique) => (
             <article
-              className="rounded-lg border border-border/80 bg-card/95 p-4 shadow-panel ring-1 ring-white/[0.02] transition-colors hover:border-primary/25 hover:bg-card"
+              className="surface-hover rounded-lg border border-border/80 bg-card/95 p-4 shadow-panel ring-1 ring-white/[0.02]"
               key={`${technique.slug}-${technique.id}`}
             >
               <div className="flex flex-wrap items-center gap-2">

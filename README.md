@@ -86,11 +86,23 @@ ThreatScope is ready for Vercel as a frontend-only Next.js app.
 
 1. Import the GitHub repository into Vercel.
 2. Keep the framework preset as `Next.js`.
-3. Use the default commands from `vercel.json`.
+3. Use the default commands from `vercel.json`:
+   - install: `npm install`
+   - build: `npm run build`
+   - dev: `npm run dev`
 4. No environment variables are required.
 5. Deploy from the `main` branch.
+6. After deployment, verify `/`, `/actors`, `/attack`, `/reports`, and one dynamic actor/report route.
 
 The app does not require a backend, database, authentication provider, external API keys, or scheduled jobs.
+
+## Suggested Domain Structure
+
+- Production: `threatscope.yourdomain.com`
+- Vercel preview: Vercel-generated preview URL for pull requests or commits
+- GitHub repository: linked from the portfolio project page
+
+For a personal portfolio, a subdomain keeps the app clearly scoped as a standalone case study while leaving the root domain for the main portfolio.
 
 ## Project Structure
 
@@ -147,11 +159,15 @@ threatscope/
 
 ## Future Roadmap
 
+V2 ideas after the deployed MVP is stable:
+
 - Add deployed demo link
 - Expand local report previews
 - Add additional chart views from local data
 - Improve visual QA across more viewport sizes
 - Add optional local-only saved filter state
+- Add printable report layouts from local data
+- Add saved filter presets in local storage
 - Consider backend or external integrations only after the frontend MVP is stable
 
 ## Disclaimer
