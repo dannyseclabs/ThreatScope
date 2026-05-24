@@ -16,10 +16,10 @@ export function RecentCampaigns() {
             <li className="relative" key={`${campaign.title}-${campaign.date}`}>
               <span className="absolute -left-[27px] top-1 h-3 w-3 rounded-full border border-background bg-primary" />
               <div className="flex flex-wrap items-center gap-2">
-                <time className="text-xs text-muted-foreground">{campaign.date}</time>
+                <time className="text-xs font-medium text-muted-foreground">{campaign.date}</time>
                 <Badge variant="outline">{campaign.actor}</Badge>
               </div>
-              <h3 className="mt-2 text-sm font-semibold text-foreground">
+              <h3 className="mt-2 text-[15px] font-semibold leading-5 text-foreground">
                 <Link className="transition-colors hover:text-primary" href={`/actors/${campaign.slug}`}>
                   {campaign.title}
                 </Link>

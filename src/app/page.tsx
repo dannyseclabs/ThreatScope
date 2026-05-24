@@ -100,11 +100,11 @@ export default function Home() {
       <section className="scroll-mt-24 rounded-lg border border-border bg-card p-5 shadow-panel" id="dashboard">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-sm text-muted-foreground">Threat intelligence overview</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-normal text-foreground">
+            <p className="text-xs font-semibold uppercase text-primary">Threat intelligence overview</p>
+            <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-normal text-foreground sm:text-5xl">
               Dashboard
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+            <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
               Frontend-only SOC dashboard using safe local mock intelligence for actor tracking,
               campaign context, MITRE mappings, malware notes, IOCs, and detection guidance.
             </p>
@@ -179,7 +179,7 @@ export default function Home() {
           >
             <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
               <div>
-                <div className="text-xs uppercase text-muted-foreground">Severity</div>
+                <div className="text-xs font-semibold uppercase text-foreground">Severity</div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {severityFilters.map((item) => (
                     <Button
@@ -191,7 +191,7 @@ export default function Home() {
                       variant="ghost"
                     >
                       {item}
-                      <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                      <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
                         {severityCounts[item]}
                       </span>
                     </Button>
@@ -199,7 +199,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <div className="text-xs uppercase text-muted-foreground">Actor type</div>
+                <div className="text-xs font-semibold uppercase text-foreground">Actor type</div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {typeFilters.map((item) => (
                     <Button
@@ -211,7 +211,7 @@ export default function Home() {
                       variant="ghost"
                     >
                       {item}
-                      <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                      <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
                         {typeCounts[item]}
                       </span>
                     </Button>
@@ -220,8 +220,9 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-3 text-sm text-muted-foreground">
-              <span>
-                Showing {filteredActors.length} of {threatActors.length} actors
+              <span className="font-medium">
+                Showing <span className="text-foreground">{filteredActors.length}</span> of{" "}
+                <span className="text-foreground">{threatActors.length}</span> actors
               </span>
               {(query || severity !== "All" || actorType !== "All") && (
                 <Button onClick={resetFilters} size="sm" variant="outline">

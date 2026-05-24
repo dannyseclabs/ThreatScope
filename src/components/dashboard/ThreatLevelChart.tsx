@@ -52,7 +52,7 @@ export function ThreatLevelChart() {
             </div>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+        <div className="grid grid-cols-2 gap-2 text-xs font-medium text-muted-foreground">
           {actorTypeDistribution.map((item, index) => (
             <div className="flex items-center gap-2" key={item.name}>
               <span

@@ -33,7 +33,9 @@ export function MitreSnapshot() {
                 <Badge variant="outline">{technique.tactic}</Badge>
                 <Badge variant="outline">{technique.actor}</Badge>
               </div>
-              <h3 className="mt-3 text-sm font-semibold text-foreground">{technique.name}</h3>
+              <h3 className="mt-3 text-[15px] font-semibold leading-5 text-foreground">
+                {technique.name}
+              </h3>
               <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
                 {technique.description}
               </p>

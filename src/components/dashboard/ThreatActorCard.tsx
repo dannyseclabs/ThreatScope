@@ -19,15 +19,19 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
           <Badge variant="secondary">{actor.type}</Badge>
           <Badge variant={getSeverityTone(actor.severity)}>{actor.severity}</Badge>
         </div>
-        <CardTitle className="pt-2 text-lg">{actor.name}</CardTitle>
-        <p className="text-sm text-muted-foreground">{actor.attributedCountry}</p>
+        <div className="pt-2">
+          <CardTitle className="text-xl leading-tight">{actor.name}</CardTitle>
+          <p className="mt-1 text-sm font-medium text-muted-foreground">
+            {actor.attributedCountry}
+          </p>
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">{actor.summary}</p>
         <div className="flex flex-wrap gap-2">
           {actor.targetSectors.slice(0, 3).map((sector) => (
             <span
-              className="rounded-md border border-border bg-muted/30 px-2 py-1 text-xs text-muted-foreground"
+              className="rounded-md border border-border bg-muted/30 px-2 py-1 text-xs font-medium text-muted-foreground"
               key={sector}
             >
               {sector}
