@@ -2,24 +2,7 @@ import { ArrowUpRight, FileText } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
-const reports = [
-  {
-    title: "Quarterly Actor Watchlist",
-    status: "Planned",
-    description: "Portfolio placeholder for a curated actor risk summary.",
-  },
-  {
-    title: "Ransomware Exposure Brief",
-    status: "Draft concept",
-    description: "Future local-only report view for defensive executive context.",
-  },
-  {
-    title: "ATT&CK Coverage Notes",
-    status: "Planned",
-    description: "A lightweight report module for mapped technique coverage.",
-  },
-];
+import { reportPreviews } from "@/data/reports";
 
 export const metadata = {
   title: "Reports | ThreatScope",
@@ -41,7 +24,7 @@ export default function ReportsPage() {
       </section>
 
       <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {reports.map((report) => (
+        {reportPreviews.map((report) => (
           <Card className="h-full hover:border-primary/25 hover:bg-card" key={report.title}>
             <CardHeader>
               <div className="flex items-center justify-between gap-3">

@@ -9,35 +9,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { allTechniques } from "@/data/threat-actors";
+import { buildFilterOptions, filterTechniques, type FilterOption } from "@/lib/threat-search";
 import { cn } from "@/lib/utils";
 
-const tacticFilters = [
-  "All",
-  ...Array.from(new Set(allTechniques.map((technique) => technique.tactic))),
-];
+const tacticFilters = buildFilterOptions(allTechniques.map((technique) => technique.tactic));
 
 export function AttackExplorer() {
   const [query, setQuery] = useState("");
-  const [tactic, setTactic] = useState("All");
+  const [tactic, setTactic] = useState<FilterOption<string>>("All");
 
-  const filteredTechniques = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return allTechniques.filter((technique) => {
-      const matchesTactic = tactic === "All" || technique.tactic === tactic;
-      const searchable = [
-        technique.id,
-        technique.name,
-        technique.tactic,
-        technique.description,
-        technique.actor,
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return matchesTactic && (!normalizedQuery || searchable.includes(normalizedQuery));
-    });
-  }, [query, tactic]);
+  const filteredTechniques = useMemo(
+    () => filterTechniques(allTechniques, { query, tactic }),
+    [query, tactic],
+  );
 
   const resetFilters = () => {
     setQuery("");

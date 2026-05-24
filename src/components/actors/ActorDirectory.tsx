@@ -9,79 +9,36 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { threatActors } from "@/data/threat-actors";
 import { useDashboardSearch } from "@/lib/search-context";
+import {
+  buildFilterOptions,
+  countActorsByFilter,
+  filterThreatActors,
+  type FilterOption,
+} from "@/lib/threat-search";
 import { cn } from "@/lib/utils";
 import type { Severity, ThreatActorType } from "@/types/threat";
 
-const severityFilters: Array<"All" | Severity> = [
-  "All",
-  ...Array.from(new Set(threatActors.map((actor) => actor.severity))),
-];
-const typeFilters: Array<"All" | ThreatActorType> = [
-  "All",
-  ...Array.from(new Set(threatActors.map((actor) => actor.type))),
-];
+const severityFilters = buildFilterOptions(threatActors.map((actor) => actor.severity));
+const typeFilters = buildFilterOptions(threatActors.map((actor) => actor.type));
 
 export function ActorDirectory() {
-  const [severity, setSeverity] = useState<"All" | Severity>("All");
-  const [actorType, setActorType] = useState<"All" | ThreatActorType>("All");
+  const [severity, setSeverity] = useState<FilterOption<Severity>>("All");
+  const [actorType, setActorType] = useState<FilterOption<ThreatActorType>>("All");
   const { query, setQuery } = useDashboardSearch();
   const searchRef = useRef<HTMLInputElement>(null);
 
-  const filteredActors = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return threatActors.filter((actor) => {
-      const matchesSeverity = severity === "All" || actor.severity === severity;
-      const matchesType = actorType === "All" || actor.type === actorType;
-      const searchable = [
-        actor.name,
-        actor.attributedCountry,
-        actor.type,
-        actor.severity,
-        ...actor.aliases,
-        ...actor.targetSectors,
-        ...actor.targetRegions,
-        ...actor.motivation,
-        ...actor.techniques.flatMap((technique) => [
-          technique.id,
-          technique.name,
-          technique.tactic,
-          technique.description,
-        ]),
-        ...actor.malware.flatMap((family) => [family.name, family.type, family.description]),
-        ...actor.campaigns.flatMap((campaign) => [
-          campaign.title,
-          campaign.description,
-          campaign.targetSector,
-        ]),
-        ...actor.iocs.flatMap((ioc) => [ioc.type, ioc.value, ioc.confidence, ioc.note]),
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return matchesSeverity && matchesType && (!normalizedQuery || searchable.includes(normalizedQuery));
-    });
-  }, [actorType, query, severity]);
+  const filteredActors = useMemo(
+    () => filterThreatActors(threatActors, { actorType, query, severity }),
+    [actorType, query, severity],
+  );
 
   const severityCounts = useMemo(
-    () =>
-      severityFilters.reduce<Record<string, number>>((counts, item) => {
-        counts[item] =
-          item === "All"
-            ? threatActors.length
-            : threatActors.filter((actor) => actor.severity === item).length;
-        return counts;
-      }, {}),
+    () => countActorsByFilter(threatActors, severityFilters, (actor) => actor.severity),
     [],
   );
 
   const typeCounts = useMemo(
-    () =>
-      typeFilters.reduce<Record<string, number>>((counts, item) => {
-        counts[item] =
-          item === "All" ? threatActors.length : threatActors.filter((actor) => actor.type === item).length;
-        return counts;
-      }, {}),
+    () => countActorsByFilter(threatActors, typeFilters, (actor) => actor.type),
     [],
   );
 
