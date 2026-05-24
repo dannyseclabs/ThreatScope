@@ -1,0 +1,33 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ThreatScope actor profile screenshot reference</title>
+  <desc id="desc">Actor profile page with summary, MITRE techniques, malware, IOC table, timeline, and detection notes.</desc>
+  <rect width="1440" height="900" fill="#071018"/>
+  <rect x="28" y="28" width="248" height="844" rx="18" fill="#0B1520" stroke="#1D2A38"/>
+  <text x="58" y="82" fill="#E5EDF5" font-family="Arial, sans-serif" font-size="26" font-weight="700">ThreatScope</text>
+  <rect x="312" y="28" width="1100" height="158" rx="22" fill="#0D1824" stroke="#27394B"/>
+  <text x="350" y="92" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">APT29</text>
+  <text x="350" y="128" fill="#94A3B8" font-family="Arial, sans-serif" font-size="18">Cozy Bear • Nobelium • Midnight Blizzard</text>
+  <rect x="1020" y="74" width="114" height="34" rx="10" fill="#172B3A" stroke="#31506B"/>
+  <text x="1045" y="96" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="14" font-weight="700">APT</text>
+  <rect x="1150" y="74" width="120" height="34" rx="10" fill="#3B2115" stroke="#7C3A16"/>
+  <text x="1174" y="96" fill="#FDBA74" font-family="Arial, sans-serif" font-size="14" font-weight="700">High</text>
+  <rect x="312" y="218" width="520" height="204" rx="18" fill="#0D1824" stroke="#27394B"/>
+  <text x="344" y="270" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Overview</text>
+  <rect x="344" y="304" width="420" height="16" rx="7" fill="#26384A"/>
+  <rect x="344" y="334" width="360" height="16" rx="7" fill="#26384A"/>
+  <rect x="864" y="218" width="548" height="204" rx="18" fill="#0D1824" stroke="#27394B"/>
+  <text x="896" y="270" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Targeting</text>
+  <rect x="896" y="310" width="130" height="30" rx="10" fill="#132233"/>
+  <rect x="1044" y="310" width="122" height="30" rx="10" fill="#132233"/>
+  <rect x="1184" y="310" width="152" height="30" rx="10" fill="#132233"/>
+  <rect x="312" y="456" width="520" height="356" rx="18" fill="#0D1824" stroke="#27394B"/>
+  <text x="344" y="508" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">MITRE techniques</text>
+  <rect x="344" y="544" width="430" height="50" rx="12" fill="#111F2E"/>
+  <rect x="344" y="612" width="430" height="50" rx="12" fill="#111F2E"/>
+  <rect x="344" y="680" width="430" height="50" rx="12" fill="#111F2E"/>
+  <rect x="864" y="456" width="548" height="356" rx="18" fill="#0D1824" stroke="#27394B"/>
+  <text x="896" y="508" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">IOC table</text>
+  <rect x="896" y="544" width="464" height="44" rx="10" fill="#132233"/>
+  <rect x="896" y="606" width="464" height="44" rx="10" fill="#111F2E"/>
+  <rect x="896" y="668" width="464" height="44" rx="10" fill="#111F2E"/>
+</svg>

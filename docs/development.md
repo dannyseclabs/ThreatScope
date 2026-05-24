@@ -136,9 +136,29 @@ Manual route checks:
 - `/actors/lazarus-group`
 - `/actors/lockbit`
 - `/actors/apt28-fancy-bear`
+- `/actors/apt29`
+- `/actors/sandworm`
+- `/actors/fin7`
+- `/actors/scattered-spider`
+- `/actors/clop`
 - `/attack`
 - `/reports`
+- `/reports/quarterly-actor-watchlist`
+- `/reports/ransomware-exposure-brief`
+- `/reports/attack-coverage-notes`
 - unknown actor slug
+
+## Vercel Deployment
+
+The project is deployment-ready for Vercel with `vercel.json`.
+
+- Framework preset: `Next.js`
+- Install command: `npm install`
+- Build command: `npm run build`
+- Development command: `npm run dev`
+- Environment variables: none required
+
+ThreatScope remains frontend-only on Vercel. Do not add API routes, databases, authentication, or external feeds unless the MVP scope changes intentionally.
 
 Manual UI checks:
 

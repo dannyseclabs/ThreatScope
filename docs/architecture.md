@@ -20,7 +20,8 @@ Routes live under `src/app`.
 - `src/app/actors/page.tsx` renders the actor directory.
 - `src/app/actors/[slug]/page.tsx` renders static actor detail pages.
 - `src/app/attack/page.tsx` renders the MITRE ATT&CK explorer.
-- `src/app/reports/page.tsx` renders the reports placeholder.
+- `src/app/reports/page.tsx` renders the static mock report index.
+- `src/app/reports/[slug]/page.tsx` renders static local intelligence brief pages.
 - `src/app/layout.tsx` provides the global shell.
 - `src/app/not-found.tsx` handles unknown actor profiles.
 - `src/app/globals.css` defines Tailwind layers and dark theme variables.
@@ -109,6 +110,8 @@ export function generateStaticParams() {
 ```
 
 This keeps profiles fast, deterministic, and deploy-friendly.
+
+Report detail routes use the same static pattern from `src/data/reports.ts`, so Vercel can build them without any backend, database, or runtime feed.
 
 ## Search Model
 

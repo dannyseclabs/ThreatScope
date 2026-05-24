@@ -1,0 +1,36 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ThreatScope MITRE ATT&amp;CK explorer screenshot reference</title>
+  <desc id="desc">ATT&amp;CK explorer page with search, tactic filters, technique cards, and actor links.</desc>
+  <rect width="1440" height="900" fill="#071018"/>
+  <rect x="28" y="28" width="248" height="844" rx="18" fill="#0B1520" stroke="#1D2A38"/>
+  <text x="58" y="82" fill="#E5EDF5" font-family="Arial, sans-serif" font-size="26" font-weight="700">ThreatScope</text>
+  <rect x="312" y="28" width="1100" height="178" rx="22" fill="#0D1824" stroke="#27394B"/>
+  <text x="350" y="92" fill="#90CDF4" font-family="Arial, sans-serif" font-size="14" font-weight="700">MITRE ATT&amp;CK</text>
+  <text x="350" y="138" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">Technique explorer</text>
+  <text x="350" y="172" fill="#94A3B8" font-family="Arial, sans-serif" font-size="18">Explore local defensive technique mappings by actor and tactic.</text>
+  <rect x="312" y="240" width="1100" height="74" rx="18" fill="#0D1824" stroke="#27394B"/>
+  <rect x="344" y="262" width="360" height="30" rx="10" fill="#101D2A" stroke="#243346"/>
+  <rect x="734" y="262" width="140" height="30" rx="10" fill="#132233"/>
+  <rect x="892" y="262" width="150" height="30" rx="10" fill="#132233"/>
+  <rect x="1060" y="262" width="134" height="30" rx="10" fill="#132233"/>
+  <g>
+    <rect x="312" y="350" width="340" height="168" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="686" y="350" width="340" height="168" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="1060" y="350" width="352" height="168" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="312" y="550" width="340" height="168" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="686" y="550" width="340" height="168" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="1060" y="550" width="352" height="168" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <text x="340" y="402" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="15" font-weight="700">T1566</text>
+    <text x="340" y="436" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Phishing</text>
+    <text x="714" y="402" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="15" font-weight="700">T1078</text>
+    <text x="714" y="436" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Valid Accounts</text>
+    <text x="1088" y="402" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="15" font-weight="700">T1190</text>
+    <text x="1088" y="436" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Public App Exploit</text>
+    <text x="340" y="602" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="15" font-weight="700">T1041</text>
+    <text x="340" y="636" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Exfiltration</text>
+    <text x="714" y="602" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="15" font-weight="700">T1486</text>
+    <text x="714" y="636" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Impact</text>
+    <text x="1088" y="602" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="15" font-weight="700">T1027</text>
+    <text x="1088" y="636" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Defense Evasion</text>
+  </g>
+</svg>

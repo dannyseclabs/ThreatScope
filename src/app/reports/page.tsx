@@ -1,6 +1,8 @@
 import { ArrowUpRight, FileText } from "lucide-react";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { reportPreviews } from "@/data/reports";
 
@@ -37,10 +39,12 @@ export default function ReportsPage() {
               <CardDescription>{report.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                Static placeholder, no report workflow yet
-              </div>
+              <Button asChild className="w-full" variant="outline">
+                <Link href={`/reports/${report.slug}`}>
+                  Open brief
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
             </CardContent>
           </Card>
         ))}

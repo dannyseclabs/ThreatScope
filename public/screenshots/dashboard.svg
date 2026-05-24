@@ -1,0 +1,43 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ThreatScope dashboard overview screenshot reference</title>
+  <desc id="desc">Dark SOC dashboard preview with analyst status, metrics, chart, campaign preview, and actor cards.</desc>
+  <rect width="1440" height="900" fill="#071018"/>
+  <rect x="28" y="28" width="248" height="844" rx="18" fill="#0B1520" stroke="#1D2A38"/>
+  <text x="58" y="82" fill="#E5EDF5" font-family="Arial, sans-serif" font-size="26" font-weight="700">ThreatScope</text>
+  <rect x="56" y="128" width="172" height="38" rx="9" fill="#132233"/>
+  <rect x="56" y="184" width="150" height="20" rx="7" fill="#223145"/>
+  <rect x="56" y="226" width="132" height="20" rx="7" fill="#223145"/>
+  <rect x="312" y="28" width="1100" height="74" rx="18" fill="#0B1520" stroke="#1D2A38"/>
+  <rect x="344" y="50" width="360" height="30" rx="10" fill="#101D2A" stroke="#243346"/>
+  <rect x="312" y="132" width="1100" height="184" rx="22" fill="#0D1824" stroke="#26384A"/>
+  <text x="350" y="190" fill="#90CDF4" font-family="Arial, sans-serif" font-size="14" font-weight="700">ANALYST WORKSPACE</text>
+  <text x="350" y="236" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">Threat intelligence overview</text>
+  <rect x="1030" y="174" width="214" height="42" rx="11" fill="#102A22" stroke="#1E6B50"/>
+  <circle cx="1055" cy="195" r="6" fill="#34D399"/>
+  <text x="1072" y="200" fill="#C7F9E5" font-family="Arial, sans-serif" font-size="15" font-weight="700">Live tracking</text>
+  <g>
+    <rect x="312" y="344" width="248" height="128" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="588" y="344" width="248" height="128" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="864" y="344" width="248" height="128" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="1138" y="344" width="274" height="128" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <text x="342" y="392" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14">Tracked Actors</text>
+    <text x="342" y="438" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">8</text>
+    <text x="618" y="392" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14">Critical Threats</text>
+    <text x="618" y="438" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">4</text>
+    <text x="894" y="392" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14">Active Campaigns</text>
+    <text x="894" y="438" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">16</text>
+    <text x="1168" y="392" fill="#94A3B8" font-family="Arial, sans-serif" font-size="14">Known IOCs</text>
+    <text x="1168" y="438" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">24</text>
+  </g>
+  <rect x="312" y="504" width="520" height="308" rx="20" fill="#0D1824" stroke="#27394B"/>
+  <text x="344" y="552" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Actor type distribution</text>
+  <circle cx="572" cy="668" r="76" stroke="#38BDF8" stroke-width="28"/>
+  <path d="M572 592a76 76 0 0 1 69 108" stroke="#F97316" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="572" cy="668" r="42" fill="#0D1824"/>
+  <text x="558" y="676" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">8</text>
+  <rect x="864" y="504" width="548" height="308" rx="20" fill="#0D1824" stroke="#27394B"/>
+  <text x="896" y="552" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Recent campaigns</text>
+  <rect x="896" y="588" width="464" height="52" rx="12" fill="#111F2E"/>
+  <rect x="896" y="658" width="464" height="52" rx="12" fill="#111F2E"/>
+  <rect x="896" y="728" width="464" height="52" rx="12" fill="#111F2E"/>
+</svg>

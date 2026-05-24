@@ -1,0 +1,31 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ThreatScope actor directory screenshot reference</title>
+  <desc id="desc">Threat actor directory with search, filters, and responsive cards.</desc>
+  <rect width="1440" height="900" fill="#071018"/>
+  <rect x="28" y="28" width="248" height="844" rx="18" fill="#0B1520" stroke="#1D2A38"/>
+  <text x="58" y="82" fill="#E5EDF5" font-family="Arial, sans-serif" font-size="26" font-weight="700">ThreatScope</text>
+  <rect x="56" y="184" width="150" height="20" rx="7" fill="#223145"/>
+  <rect x="312" y="28" width="1100" height="74" rx="18" fill="#0B1520" stroke="#1D2A38"/>
+  <rect x="344" y="50" width="420" height="30" rx="10" fill="#101D2A" stroke="#243346"/>
+  <text x="312" y="160" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="42" font-weight="700">Threat actor directory</text>
+  <text x="312" y="198" fill="#94A3B8" font-family="Arial, sans-serif" font-size="18">Search by actor, alias, country, type, severity, or sector.</text>
+  <rect x="312" y="238" width="1100" height="74" rx="18" fill="#0D1824" stroke="#27394B"/>
+  <rect x="344" y="260" width="350" height="30" rx="10" fill="#101D2A" stroke="#243346"/>
+  <rect x="724" y="260" width="122" height="30" rx="10" fill="#132233"/>
+  <rect x="862" y="260" width="142" height="30" rx="10" fill="#132233"/>
+  <rect x="1020" y="260" width="140" height="30" rx="10" fill="#132233"/>
+  <g>
+    <rect x="312" y="348" width="340" height="214" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="686" y="348" width="340" height="214" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="1060" y="348" width="352" height="214" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="312" y="598" width="340" height="214" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="686" y="598" width="340" height="214" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <rect x="1060" y="598" width="352" height="214" rx="18" fill="#0D1824" stroke="#27394B"/>
+    <text x="340" y="402" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Lazarus Group</text>
+    <text x="714" y="402" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">LockBit</text>
+    <text x="1088" y="402" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">APT28 / Fancy Bear</text>
+    <text x="340" y="652" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">APT29</text>
+    <text x="714" y="652" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">Sandworm</text>
+    <text x="1088" y="652" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">FIN7</text>
+  </g>
+</svg>

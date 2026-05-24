@@ -1,6 +1,6 @@
 # Data Model
 
-ThreatScope uses local TypeScript data for all threat intelligence content. The core model lives in `src/types/threat.ts`, and the first dataset lives in `src/data/threat-actors.ts`.
+ThreatScope uses local TypeScript data for all threat intelligence content. The core threat actor model lives in `src/types/threat.ts`, actor data lives in `src/data/threat-actors.ts`, and static report previews live in `src/data/reports.ts`.
 
 ## Core Types
 
@@ -130,6 +130,28 @@ SOC analyst guidance focused on monitoring, triage, and correlation.
 - `dashboardStats`
 
 These derived exports keep dashboard components small and avoid repeated transformation logic.
+
+## Reports
+
+`src/data/reports.ts` stores safe local mock report previews and report detail sections.
+
+Each report includes:
+
+- `slug`
+- `title`
+- `status`
+- `description`
+- `date`
+- `focus`
+- `sections`
+
+Report pages are rendered at:
+
+```text
+/reports/[slug]
+```
+
+Reports should remain static portfolio artifacts. They should not claim live threat intelligence coverage or include operational guidance.
 
 ## Adding A New Actor
 

@@ -17,7 +17,7 @@ The goal is not to provide real intelligence. The goal is to show frontend engin
 - Dynamic actor profile pages at `/actors/[slug]`
 - MITRE ATT&CK explorer with tactic filtering
 - Malware, IOC, campaign, and detection-note sections
-- Reports placeholder route for future intelligence briefs
+- Static report detail pages for three mock intelligence briefs
 - Responsive dark-mode SOC dashboard UI
 - Local TypeScript mock data with realistic defensive terminology
 
@@ -33,15 +33,15 @@ The goal is not to provide real intelligence. The goal is to show frontend engin
 
 ## Screenshots
 
-Add screenshots after deployment or final visual polish.
+These screenshot references are stored in `public/screenshots` so they render in GitHub and can be replaced with captured production screenshots after deployment.
 
 | Dashboard | Actor Directory |
 | --- | --- |
-| `screenshots/dashboard.png` | `screenshots/actors.png` |
+| ![ThreatScope dashboard overview](public/screenshots/dashboard.svg) | ![ThreatScope actor directory](public/screenshots/actors.svg) |
 
 | Actor Profile | ATT&CK Explorer |
 | --- | --- |
-| `screenshots/actor-profile.png` | `screenshots/attack.png` |
+| ![ThreatScope actor profile](public/screenshots/actor-profile.svg) | ![ThreatScope ATT&CK explorer](public/screenshots/attack.svg) |
 
 ## Routes
 
@@ -49,7 +49,8 @@ Add screenshots after deployment or final visual polish.
 - `/actors` - searchable actor directory
 - `/actors/[slug]` - full actor profile
 - `/attack` - MITRE ATT&CK technique explorer
-- `/reports` - reports module placeholder
+- `/reports` - static mock report index
+- `/reports/[slug]` - static mock intelligence brief
 
 ## Run Locally
 
@@ -79,6 +80,18 @@ npm run build
 npm audit --omit=dev
 ```
 
+## Deploy To Vercel
+
+ThreatScope is ready for Vercel as a frontend-only Next.js app.
+
+1. Import the GitHub repository into Vercel.
+2. Keep the framework preset as `Next.js`.
+3. Use the default commands from `vercel.json`.
+4. No environment variables are required.
+5. Deploy from the `main` branch.
+
+The app does not require a backend, database, authentication provider, external API keys, or scheduled jobs.
+
 ## Project Structure
 
 ```text
@@ -95,7 +108,9 @@ threatscope/
 │   │   ├── attack/
 │   │   │   └── page.tsx
 │   │   └── reports/
-│   │       └── page.tsx
+│   │       ├── page.tsx
+│   │       └── [slug]/
+│   │           └── page.tsx
 │   ├── components/
 │   │   ├── actors/
 │   │   ├── attack/
@@ -107,8 +122,10 @@ threatscope/
 │   └── types/
 ├── docs/
 ├── public/
+│   └── screenshots/
 ├── README.md
 ├── package.json
+├── vercel.json
 └── tailwind.config.ts
 ```
 
@@ -130,8 +147,7 @@ threatscope/
 
 ## Future Roadmap
 
-- Add more safe mock threat actor profiles
-- Add screenshots and deployed demo links
+- Add deployed demo link
 - Expand local report previews
 - Add additional chart views from local data
 - Improve visual QA across more viewport sizes
