@@ -1,16 +1,11 @@
-import { BarChart3, Crosshair, FileSearch, Shield } from "lucide-react";
+import { Shield } from "lucide-react";
 import Link from "next/link";
 
-const navItems = [
-  { label: "Dashboard", href: "/#dashboard", icon: BarChart3 },
-  { label: "Actors", href: "/#actors", icon: Shield },
-  { label: "ATT&CK", href: "/#mitre", icon: Crosshair },
-  { label: "Reports", href: "/#campaigns", icon: FileSearch },
-];
+import { navItems } from "@/components/layout/nav-items";
 
 export function Sidebar() {
   return (
-    <aside className="hidden min-h-screen w-64 shrink-0 border-r border-border bg-card/80 lg:block">
+    <aside className="sticky top-0 hidden h-screen w-60 shrink-0 border-r border-border bg-card/80 xl:block">
       <div className="flex h-16 items-center gap-3 border-b border-border px-5">
         <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
           <Shield className="h-5 w-5" aria-hidden="true" />

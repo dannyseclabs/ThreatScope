@@ -17,7 +17,10 @@ ThreatScope is a frontend-only Next.js App Router application. The app is built 
 Routes live under `src/app`.
 
 - `src/app/page.tsx` renders the dashboard homepage.
+- `src/app/actors/page.tsx` renders the actor directory.
 - `src/app/actors/[slug]/page.tsx` renders static actor detail pages.
+- `src/app/attack/page.tsx` renders the MITRE ATT&CK explorer.
+- `src/app/reports/page.tsx` renders the reports placeholder.
 - `src/app/layout.tsx` provides the global shell.
 - `src/app/not-found.tsx` handles unknown actor profiles.
 - `src/app/globals.css` defines Tailwind layers and dark theme variables.
@@ -28,9 +31,10 @@ Layout components live under `src/components/layout`.
 
 - `AppShell.tsx` wraps the full app and provides shared search context.
 - `Sidebar.tsx` contains the desktop navigation.
-- `Topbar.tsx` contains global search and the local data badge.
+- `Topbar.tsx` contains global search, mobile navigation, and the local data badge.
+- `nav-items.ts` keeps route navigation definitions shared.
 
-The layout is intentionally simple: fixed desktop sidebar, sticky topbar, and a main content region.
+The layout is intentionally simple: fixed desktop sidebar on wide screens, sticky topbar, mobile top navigation, and a main content region.
 
 ### Dashboard Components
 
@@ -40,14 +44,14 @@ Dashboard components live under `src/components/dashboard`.
 - `ThreatActorCard.tsx`
 - `ThreatLevelChart.tsx`
 - `RecentCampaigns.tsx`
-- `MitreSnapshot.tsx`
 
 These components consume local derived data from `src/data/threat-actors.ts`.
 
-### Actor Detail Components
+### Actor Components
 
-Actor profile components live under `src/components/actors`.
+Actor directory and profile components live under `src/components/actors`.
 
+- `ActorDirectory.tsx`
 - `ActorHeader.tsx`
 - `ActorOverview.tsx`
 - `MitreTechniqueList.tsx`
@@ -57,6 +61,14 @@ Actor profile components live under `src/components/actors`.
 - `DetectionNotes.tsx`
 
 Each component receives typed props and stays focused on one section of the actor profile.
+
+### ATT&CK Components
+
+ATT&CK explorer components live under `src/components/attack`.
+
+- `AttackExplorer.tsx`
+
+The explorer filters local MITRE technique mappings by tactic and query, then links back to actor profile pages.
 
 ### UI Primitives
 
@@ -100,7 +112,7 @@ This keeps profiles fast, deterministic, and deploy-friendly.
 
 ## Search Model
 
-Search state is stored in `src/lib/search-context.tsx` and shared between the topbar and dashboard page. Search remains client-side and filters the local actor list.
+Search state is stored in `src/lib/search-context.tsx` and shared between the topbar and actor directory. Search remains client-side and filters the local actor list.
 
 Search includes actor metadata plus related techniques, malware, campaigns, and IOCs.
 

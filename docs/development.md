@@ -67,7 +67,8 @@ Good component boundaries:
 
 - Layout components own app chrome.
 - Dashboard components own homepage sections.
-- Actor components own profile sections.
+- Actor components own the actor directory and profile sections.
+- ATT&CK components own technique exploration.
 - Data files own mock intelligence content.
 - Types own shared contracts.
 
@@ -92,9 +93,11 @@ Use Tailwind utilities and existing CSS variables from `src/app/globals.css`.
 
 Search is client-side and powered by `SearchProvider` in `src/lib/search-context.tsx`.
 
-The dashboard filter logic lives in `src/app/page.tsx`.
+Actor directory filtering lives in `src/components/actors/ActorDirectory.tsx`.
 
-When adding new searchable actor fields, update the `searchable` array inside the dashboard filter logic.
+ATT&CK technique filtering lives in `src/components/attack/AttackExplorer.tsx`.
+
+When adding new searchable actor fields, update the `searchable` array inside the actor directory filter logic.
 
 ## Adding A New Section
 
@@ -129,9 +132,12 @@ npm audit --omit=dev
 Manual route checks:
 
 - `/`
+- `/actors`
 - `/actors/lazarus-group`
 - `/actors/lockbit`
 - `/actors/apt28-fancy-bear`
+- `/attack`
+- `/reports`
 - unknown actor slug
 
 Manual UI checks:

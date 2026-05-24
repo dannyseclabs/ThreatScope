@@ -1,0 +1,213 @@
+"use client";
+
+import { useMemo, useRef, useState } from "react";
+import { Search, X } from "lucide-react";
+
+import { ThreatActorCard } from "@/components/dashboard/ThreatActorCard";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { threatActors } from "@/data/threat-actors";
+import { useDashboardSearch } from "@/lib/search-context";
+import { cn } from "@/lib/utils";
+import type { Severity, ThreatActorType } from "@/types/threat";
+
+const severityFilters: Array<"All" | Severity> = [
+  "All",
+  ...Array.from(new Set(threatActors.map((actor) => actor.severity))),
+];
+const typeFilters: Array<"All" | ThreatActorType> = [
+  "All",
+  ...Array.from(new Set(threatActors.map((actor) => actor.type))),
+];
+
+export function ActorDirectory() {
+  const [severity, setSeverity] = useState<"All" | Severity>("All");
+  const [actorType, setActorType] = useState<"All" | ThreatActorType>("All");
+  const { query, setQuery } = useDashboardSearch();
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  const filteredActors = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    return threatActors.filter((actor) => {
+      const matchesSeverity = severity === "All" || actor.severity === severity;
+      const matchesType = actorType === "All" || actor.type === actorType;
+      const searchable = [
+        actor.name,
+        actor.attributedCountry,
+        actor.type,
+        actor.severity,
+        ...actor.aliases,
+        ...actor.targetSectors,
+        ...actor.targetRegions,
+        ...actor.motivation,
+        ...actor.techniques.flatMap((technique) => [
+          technique.id,
+          technique.name,
+          technique.tactic,
+          technique.description,
+        ]),
+        ...actor.malware.flatMap((family) => [family.name, family.type, family.description]),
+        ...actor.campaigns.flatMap((campaign) => [
+          campaign.title,
+          campaign.description,
+          campaign.targetSector,
+        ]),
+        ...actor.iocs.flatMap((ioc) => [ioc.type, ioc.value, ioc.confidence, ioc.note]),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return matchesSeverity && matchesType && (!normalizedQuery || searchable.includes(normalizedQuery));
+    });
+  }, [actorType, query, severity]);
+
+  const severityCounts = useMemo(
+    () =>
+      severityFilters.reduce<Record<string, number>>((counts, item) => {
+        counts[item] =
+          item === "All"
+            ? threatActors.length
+            : threatActors.filter((actor) => actor.severity === item).length;
+        return counts;
+      }, {}),
+    [],
+  );
+
+  const typeCounts = useMemo(
+    () =>
+      typeFilters.reduce<Record<string, number>>((counts, item) => {
+        counts[item] =
+          item === "All" ? threatActors.length : threatActors.filter((actor) => actor.type === item).length;
+        return counts;
+      }, {}),
+    [],
+  );
+
+  const resetFilters = () => {
+    setQuery("");
+    setSeverity("All");
+    setActorType("All");
+    searchRef.current?.focus();
+  };
+
+  return (
+    <section className="space-y-5" id="actor-directory">
+      <Card>
+        <CardContent className="space-y-4 p-4 sm:p-5">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="relative w-full lg:max-w-md">
+              <Button
+                aria-label="Focus actor search"
+                className="absolute left-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+                onClick={() => searchRef.current?.focus()}
+                size="icon"
+                variant="ghost"
+              >
+                <Search className="h-4 w-4" aria-hidden="true" />
+              </Button>
+              <Input
+                className="pr-10 pl-10"
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search actors, aliases, IOCs, sectors"
+                ref={searchRef}
+                value={query}
+              />
+              {query ? (
+                <Button
+                  aria-label="Clear actor search"
+                  className="absolute right-1 top-1 h-8 w-8 text-muted-foreground hover:text-foreground"
+                  onClick={() => {
+                    setQuery("");
+                    searchRef.current?.focus();
+                  }}
+                  size="icon"
+                  variant="ghost"
+                >
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              ) : null}
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {(query || severity !== "All" || actorType !== "All") && (
+                <Button onClick={resetFilters} size="sm" variant="outline">
+                  Reset filters
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <div className="grid gap-4 xl:grid-cols-2">
+            <div>
+              <div className="text-xs font-semibold uppercase text-foreground">Severity</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {severityFilters.map((item) => (
+                  <Button
+                    aria-pressed={item === severity}
+                    className={cn(item === severity && "bg-accent text-accent-foreground")}
+                    key={item}
+                    onClick={() => setSeverity(item)}
+                    size="sm"
+                    variant="ghost"
+                  >
+                    {item}
+                    <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
+                      {severityCounts[item]}
+                    </span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs font-semibold uppercase text-foreground">Actor type</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {typeFilters.map((item) => (
+                  <Button
+                    aria-pressed={item === actorType}
+                    className={cn(item === actorType && "bg-accent text-accent-foreground")}
+                    key={item}
+                    onClick={() => setActorType(item)}
+                    size="sm"
+                    variant="ghost"
+                  >
+                    {item}
+                    <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
+                      {typeCounts[item]}
+                    </span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border pt-3 text-sm font-medium text-muted-foreground">
+            Showing <span className="text-foreground">{filteredActors.length}</span> of{" "}
+            <span className="text-foreground">{threatActors.length}</span> actors
+          </div>
+        </CardContent>
+      </Card>
+
+      {filteredActors.length > 0 ? (
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {filteredActors.map((actor) => (
+            <ThreatActorCard actor={actor} key={actor.slug} />
+          ))}
+        </div>
+      ) : (
+        <Card>
+          <CardContent className="py-12 text-center">
+            <h2 className="text-lg font-semibold text-foreground">No actors found</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Adjust the search query or reset filters to return to the full local dataset.
+            </p>
+            <Button className="mt-5" onClick={resetFilters} variant="outline">
+              Reset filters
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+    </section>
+  );
+}

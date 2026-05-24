@@ -9,10 +9,12 @@ The app is intentionally defensive and educational. It does not contain offensiv
 MVP is working locally.
 
 - Dashboard homepage
-- Threat actor cards
+- Threat actor directory
 - Client-side search and filtering
 - Dynamic actor detail pages
-- MITRE ATT&CK techniques
+- MITRE ATT&CK explorer
+- Reports placeholder route
+- Threat actor cards
 - Malware section
 - IOC table with copy actions
 - Campaign timeline
@@ -59,8 +61,19 @@ The dashboard gives a compact SOC-style overview:
 - Known IOCs
 - Actor type chart
 - Recent campaign timeline
-- MITRE technique snapshot
-- Actor search and filtering
+- Priority actor preview
+- Link to the ATT&CK explorer
+
+### Actor Directory
+
+The actor directory lives at `/actors` and provides:
+
+- Actor search
+- Severity filters
+- Actor type filters
+- Responsive actor card grid
+- Empty state
+- Reset filters action
 
 ### Threat Actor Profiles
 
@@ -81,7 +94,7 @@ Each actor has a profile page at `/actors/[slug]` with:
 
 ### Search And Filtering
 
-Homepage search is client-side and searches across:
+Actor directory search is client-side and searches across:
 
 - Actor name
 - Aliases
@@ -97,6 +110,19 @@ Homepage search is client-side and searches across:
 - IOC values and notes
 
 Filters support severity and actor type.
+
+### MITRE ATT&CK Explorer
+
+The ATT&CK explorer lives at `/attack` and provides:
+
+- Technique cards
+- Search by ID, name, tactic, actor, or description
+- Filter by tactic
+- Links back to related actor profiles
+
+### Reports
+
+The reports page lives at `/reports`. It is intentionally a placeholder for future local mock intelligence briefs and does not include backend workflows.
 
 ## Mock Dataset
 
@@ -148,7 +174,12 @@ threatscope/
 │   │   ├── layout.tsx
 │   │   ├── globals.css
 │   │   ├── not-found.tsx
+│   │   ├── attack/
+│   │   │   └── page.tsx
+│   │   ├── reports/
+│   │   │   └── page.tsx
 │   │   └── actors/
+│   │       ├── page.tsx
 │   │       └── [slug]/
 │   │           └── page.tsx
 │   ├── components/
@@ -186,9 +217,12 @@ npm audit --omit=dev
 Expected route behavior:
 
 - `/` returns the dashboard
+- `/actors` returns the searchable actor directory
 - `/actors/lazarus-group` returns the Lazarus profile
 - `/actors/lockbit` returns the LockBit profile
 - `/actors/apt28-fancy-bear` returns the APT28 profile
+- `/attack` returns the ATT&CK explorer
+- `/reports` returns the reports placeholder
 - Unknown actor slugs return the custom not-found state
 
 ## Extending The Dataset

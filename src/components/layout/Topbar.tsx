@@ -2,12 +2,15 @@
 
 import { useRef } from "react";
 import { Search, X } from "lucide-react";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { navItems } from "@/components/layout/nav-items";
 import { useDashboardSearch } from "@/lib/search-context";
+import { cn } from "@/lib/utils";
 
 export function Topbar() {
   const { query, setQuery } = useDashboardSearch();
@@ -16,13 +19,13 @@ export function Topbar() {
   const router = useRouter();
 
   const showDashboardResults = () => {
-    if (pathname === "/") {
-      document.getElementById("actors")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (pathname === "/actors") {
+      document.getElementById("actor-directory")?.scrollIntoView({ behavior: "smooth", block: "start" });
       inputRef.current?.focus();
       return;
     }
 
-    router.push("/#actors");
+    router.push("/actors");
   };
 
   return (
@@ -77,6 +80,25 @@ export function Topbar() {
           </Badge>
         </div>
       </div>
+      <nav className="grid grid-cols-4 gap-1 border-t border-border px-2 py-2 xl:hidden">
+        {navItems.map((item) => {
+          const isActive =
+            item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
+          return (
+            <Link
+              className={cn(
+                "flex items-center justify-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
+                isActive && "bg-accent text-foreground",
+              )}
+              href={item.href}
+              key={item.label}
+            >
+              <item.icon className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="truncate">{item.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
     </header>
   );
 }
