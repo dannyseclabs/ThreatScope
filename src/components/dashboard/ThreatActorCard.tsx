@@ -10,6 +10,7 @@ import type { ThreatActor } from "@/types/threat";
 
 type ThreatActorCardProps = {
   actor: ThreatActor;
+  variant?: "default" | "directory";
 };
 
 const severityRail = {
@@ -19,7 +20,8 @@ const severityRail = {
   Low: "bg-slate-400",
 };
 
-export function ThreatActorCard({ actor }: ThreatActorCardProps) {
+export function ThreatActorCard({ actor, variant = "default" }: ThreatActorCardProps) {
+  const isDirectory = variant === "directory";
   const monogram = actor.name
     .split(/[\s/]+/)
     .filter(Boolean)
@@ -28,12 +30,17 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
     .join("");
 
   return (
-    <Card className="surface-hover group relative h-full overflow-hidden">
+    <Card className={cn("surface-hover group relative h-full overflow-hidden", isDirectory && "bg-card/80")}>
       <div className={cn("absolute inset-x-0 top-0 h-px", severityRail[actor.severity])} />
-      <CardHeader>
+      <CardHeader className={cn(isDirectory && "p-4 pb-3")}>
         <div className="flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 font-mono text-sm font-semibold text-primary">
+            <div
+              className={cn(
+                "flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 font-mono text-sm font-semibold text-primary",
+                isDirectory && "h-10 w-10 text-xs",
+              )}
+            >
               {monogram}
             </div>
             <div className="min-w-0">
@@ -41,7 +48,9 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
                 <Badge variant="secondary">{actor.type}</Badge>
                 <Badge variant={getSeverityTone(actor.severity)}>{actor.severity}</Badge>
               </div>
-              <CardTitle className="mt-2 text-xl leading-tight">{actor.name}</CardTitle>
+              <CardTitle className={cn("mt-2 leading-tight", isDirectory ? "text-lg" : "text-xl")}>
+                {actor.name}
+              </CardTitle>
             </div>
           </div>
           <ShieldAlert className="mt-1 h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" aria-hidden="true" />
@@ -51,9 +60,25 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
           {actor.attributedCountry}
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">{actor.summary}</p>
-        <div className="grid grid-cols-2 gap-2 border-t border-border/70 pt-4 text-xs">
+      <CardContent className={cn("space-y-4", isDirectory && "p-4 pt-0")}>
+        {isDirectory ? (
+          <div className="flex min-w-0 flex-wrap gap-1.5 text-xs text-muted-foreground">
+            {actor.aliases.slice(0, 2).map((alias) => (
+              <span className="chip" key={alias}>
+                {alias}
+              </span>
+            ))}
+          </div>
+        ) : null}
+        <p
+          className={cn(
+            "text-sm text-muted-foreground",
+            isDirectory ? "line-clamp-2 leading-5" : "line-clamp-3 leading-6",
+          )}
+        >
+          {actor.summary}
+        </p>
+        <div className={cn("grid gap-2 border-t border-border/70 text-xs", isDirectory ? "grid-cols-3 pt-3" : "grid-cols-2 pt-4")}>
           <div className="metadata-tile">
             <div className="font-semibold uppercase text-muted-foreground">Techniques</div>
             <div className="mt-1 font-mono text-base font-semibold text-foreground">
@@ -66,15 +91,23 @@ export function ThreatActorCard({ actor }: ThreatActorCardProps) {
               {actor.malware.length}
             </div>
           </div>
+          {isDirectory ? (
+            <div className="metadata-tile">
+              <div className="font-semibold uppercase text-muted-foreground">IOCs</div>
+              <div className="mt-1 font-mono text-base font-semibold text-foreground">
+                {actor.iocs.length}
+              </div>
+            </div>
+          ) : null}
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {actor.targetSectors.slice(0, 3).map((sector) => (
             <span className="chip" key={sector}>
               {sector}
             </span>
           ))}
         </div>
-        <Button asChild className="w-full justify-between" variant="outline">
+        <Button asChild className="w-full justify-between" size={isDirectory ? "sm" : "default"} variant="outline">
           <Link href={`/actors/${actor.slug}`}>
             View profile
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

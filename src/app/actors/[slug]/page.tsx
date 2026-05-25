@@ -45,7 +45,7 @@ export default async function ActorPage({ params }: { params: Promise<{ slug: st
   }
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="mx-auto max-w-7xl space-y-5">
       <Button asChild variant="ghost">
         <Link href="/">
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -56,12 +56,12 @@ export default async function ActorPage({ params }: { params: Promise<{ slug: st
       <ActorHeader actor={actor} />
       <ActorOverview actor={actor} />
 
-      <section className="grid min-w-0 gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]">
+      <section className="grid min-w-0 gap-5 xl:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
         <MitreTechniqueList techniques={actor.techniques} />
         <MalwareList malware={actor.malware} />
       </section>
 
-      <section className="grid min-w-0 gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+      <section className="grid min-w-0 gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)]">
         <IocTable iocs={actor.iocs} />
         <CampaignTimeline campaigns={actor.campaigns} />
       </section>

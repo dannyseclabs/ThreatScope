@@ -4,7 +4,7 @@ import type { MitreTechnique } from "@/types/threat";
 
 export function MitreTechniqueList({ techniques }: { techniques: MitreTechnique[] }) {
   return (
-    <Card>
+    <Card className="overflow-hidden">
       <CardHeader>
         <CardTitle>MITRE ATT&CK Techniques</CardTitle>
         <CardDescription>Mapped behavior for defensive monitoring</CardDescription>
@@ -13,7 +13,7 @@ export function MitreTechniqueList({ techniques }: { techniques: MitreTechnique[
         <div className="grid min-w-0 gap-3 md:grid-cols-2">
           {techniques.map((technique) => (
             <article
-              className="surface-hover min-w-0 rounded-lg border border-border/80 bg-muted/25 p-4"
+              className="surface-hover min-w-0 rounded-lg border border-border/80 bg-muted/25 p-3.5"
               key={technique.id}
             >
               <div className="flex flex-wrap gap-2">
@@ -21,7 +21,7 @@ export function MitreTechniqueList({ techniques }: { techniques: MitreTechnique[
                 <Badge variant="outline">{technique.tactic}</Badge>
               </div>
               <h3 className="mt-3 text-sm font-semibold text-foreground">{technique.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              <p className="mt-2 text-sm leading-5 text-muted-foreground">
                 {technique.description}
               </p>
             </article>

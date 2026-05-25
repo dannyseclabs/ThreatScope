@@ -1,4 +1,4 @@
-import { MapPin, ShieldAlert } from "lucide-react";
+import { Fingerprint, MapPin, ShieldAlert } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -7,10 +7,15 @@ import type { ThreatActor } from "@/types/threat";
 
 export function ActorHeader({ actor }: { actor: ThreatActor }) {
   return (
-    <Card className="overflow-hidden p-5 sm:p-6">
+    <Card className="relative overflow-hidden p-5 sm:p-6">
+      <div className="absolute inset-x-0 top-0 h-px bg-primary/45" aria-hidden="true" />
       <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-        <div>
-          <div className="flex flex-wrap gap-2">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+            <Fingerprint className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+            Threat intel dossier
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
             <Badge variant="secondary">{actor.type}</Badge>
             <Badge variant={getSeverityTone(actor.severity)}>{actor.severity}</Badge>
             <Badge variant="outline">
@@ -30,7 +35,7 @@ export function ActorHeader({ actor }: { actor: ThreatActor }) {
             ))}
           </div>
         </div>
-        <div className="rounded-lg border border-primary/25 bg-primary/10 p-3 text-primary">
+        <div className="hidden rounded-lg border border-primary/25 bg-primary/10 p-3 text-primary sm:block">
           <ShieldAlert className="h-6 w-6" aria-hidden="true" />
         </div>
       </div>

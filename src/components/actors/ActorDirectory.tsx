@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { Search, SearchX, X } from "lucide-react";
+import { Filter, Radar, Search, SearchX, ShieldAlert, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 import { ThreatActorCard } from "@/components/dashboard/ThreatActorCard";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -56,60 +57,72 @@ function ActorDirectoryContent({ initialQuery }: { initialQuery: string }) {
     searchRef.current?.focus();
   };
 
+  const hasActiveFilters = Boolean(query) || severity !== "All" || actorType !== "All";
+  const criticalVisible = filteredActors.filter((actor) => actor.severity === "Critical").length;
+
   return (
     <section className="space-y-5" id="actor-directory">
-      <Card>
-        <CardContent className="space-y-4 p-4 sm:p-5">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div className="relative w-full lg:max-w-md">
-              <Button
-                aria-label="Focus actor search"
-                className="absolute left-0 top-0 text-muted-foreground hover:text-foreground"
-                onClick={() => searchRef.current?.focus()}
-                size="icon"
-                variant="ghost"
-              >
-                <Search className="h-4 w-4" aria-hidden="true" />
-              </Button>
-              <Input
-                aria-label="Search actor directory"
-                autoComplete="off"
-                className="pr-10 pl-10"
-                name="actor-directory-search"
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search actors, aliases, IOCs, sectors…"
-                ref={searchRef}
-                spellCheck={false}
-                value={query}
-              />
-              {query ? (
+      <Card className="overflow-hidden">
+        <CardContent className="space-y-4 p-0">
+          <div className="border-b border-border/70 bg-card/55 p-4 sm:p-5">
+            <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+                  <ShieldAlert className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                  Analyst watchlist
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                  <Badge variant="outline">{filteredActors.length} visible</Badge>
+                  <Badge variant={criticalVisible > 0 ? "critical" : "outline"}>{criticalVisible} critical</Badge>
+                  <Badge variant="outline">{threatActors.length} tracked</Badge>
+                </div>
+              </div>
+
+              <div className="relative w-full xl:max-w-xl">
                 <Button
-                  aria-label="Clear actor search"
-                  className="absolute right-0 top-0 text-muted-foreground hover:text-foreground"
-                  onClick={() => {
-                    setQuery("");
-                    searchRef.current?.focus();
-                  }}
+                  aria-label="Focus actor search"
+                  className="absolute left-0 top-0 text-muted-foreground hover:text-foreground"
+                  onClick={() => searchRef.current?.focus()}
                   size="icon"
                   variant="ghost"
                 >
-                  <X className="h-4 w-4" aria-hidden="true" />
+                  <Search className="h-4 w-4" aria-hidden="true" />
                 </Button>
-              ) : null}
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {(query || severity !== "All" || actorType !== "All") && (
-                <Button onClick={resetFilters} size="sm" variant="outline">
-                  Reset filters
-                </Button>
-              )}
+                <Input
+                  aria-label="Search actor directory"
+                  autoComplete="off"
+                  className="pr-10 pl-10"
+                  name="actor-directory-search"
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="Search actors, aliases, IOCs, sectors…"
+                  ref={searchRef}
+                  spellCheck={false}
+                  value={query}
+                />
+                {query ? (
+                  <Button
+                    aria-label="Clear actor search"
+                    className="absolute right-0 top-0 text-muted-foreground hover:text-foreground"
+                    onClick={() => {
+                      setQuery("");
+                      searchRef.current?.focus();
+                    }}
+                    size="icon"
+                    variant="ghost"
+                  >
+                    <X className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                ) : null}
+              </div>
             </div>
           </div>
 
-          <div className="grid gap-4 xl:grid-cols-2">
+          <div className="grid gap-3 px-4 sm:px-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <div className="panel-muted p-3">
-              <div className="text-xs font-semibold uppercase text-muted-foreground">Severity</div>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+                <Filter className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                Severity
+              </div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {severityFilters.map((item) => (
                   <Button
@@ -129,7 +142,10 @@ function ActorDirectoryContent({ initialQuery }: { initialQuery: string }) {
               </div>
             </div>
             <div className="panel-muted p-3">
-              <div className="text-xs font-semibold uppercase text-muted-foreground">Actor type</div>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
+                <Filter className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                Actor type
+              </div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {typeFilters.map((item) => (
                   <Button
@@ -150,23 +166,36 @@ function ActorDirectoryContent({ initialQuery }: { initialQuery: string }) {
             </div>
           </div>
 
-          <div className="border-t border-border pt-3 text-sm font-medium text-muted-foreground">
-            Showing <span className="text-foreground">{filteredActors.length}</span> of{" "}
-            <span className="text-foreground">{threatActors.length}</span> actors
+          <div className="flex flex-col gap-3 border-t border-border/70 px-4 py-3 text-sm font-medium text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-5">
+            <div className="flex items-center gap-2">
+              <Radar className="h-4 w-4 text-primary" aria-hidden="true" />
+              Showing <span className="text-foreground">{filteredActors.length}</span> of{" "}
+              <span className="text-foreground">{threatActors.length}</span> actors
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {query ? <span className="chip">Query: {query}</span> : null}
+              {severity !== "All" ? <span className="chip">Severity: {severity}</span> : null}
+              {actorType !== "All" ? <span className="chip">Type: {actorType}</span> : null}
+              {hasActiveFilters ? (
+                <Button onClick={resetFilters} size="sm" variant="outline">
+                  Reset
+                </Button>
+              ) : null}
+            </div>
           </div>
         </CardContent>
       </Card>
 
       {filteredActors.length > 0 ? (
-        <div className="grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid min-w-0 gap-4 lg:grid-cols-2">
           {filteredActors.map((actor) => (
-            <ThreatActorCard actor={actor} key={actor.slug} />
+            <ThreatActorCard actor={actor} key={actor.slug} variant="directory" />
           ))}
         </div>
       ) : (
-        <Card>
+        <Card className="border-dashed">
           <CardContent className="py-12 text-center">
-            <SearchX className="mx-auto h-10 w-10 text-muted-foreground" aria-hidden="true" />
+            <SearchX className="mx-auto h-10 w-10 text-primary" aria-hidden="true" />
             <h2 className="text-lg font-semibold text-foreground">No actors found</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Adjust the search query or reset filters to return to the full local dataset.

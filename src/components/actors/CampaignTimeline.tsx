@@ -18,16 +18,16 @@ export function CampaignTimeline({
   description?: string;
 }) {
   return (
-    <Card>
+    <Card className="overflow-hidden">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ol className="relative space-y-5 border-l border-border pl-5">
+        <ol className="relative space-y-4 border-l border-border pl-5">
           {campaigns.map((campaign) => (
             <li
-              className="relative rounded-md border border-transparent p-2 transition-colors hover:border-border/70 hover:bg-muted/20"
+              className="relative rounded-md border border-border/60 bg-muted/15 p-3 transition-colors hover:border-border/80 hover:bg-muted/25"
               key={`${campaign.title}-${campaign.date}`}
             >
               <span className="absolute -left-[27px] top-1 h-3 w-3 rounded-full border border-background bg-primary" />
@@ -45,7 +45,7 @@ export function CampaignTimeline({
                   campaign.title
                 )}
               </h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+              <p className="mt-1 text-sm leading-5 text-muted-foreground">
                 {campaign.description}
               </p>
             </li>

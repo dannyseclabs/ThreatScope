@@ -39,13 +39,13 @@ export function IocTable({ iocs }: { iocs: IndicatorOfCompromise[] }) {
   };
 
   return (
-    <Card>
+    <Card className="overflow-hidden">
       <CardHeader>
         <CardTitle>IOC Table</CardTitle>
         <CardDescription>Safe, defanged, or documentation-range indicators</CardDescription>
       </CardHeader>
-      <CardContent className="min-w-0">
-        <Table>
+      <CardContent className="min-w-0 overflow-x-auto">
+        <Table className="min-w-[760px]">
           <TableHeader>
             <TableRow>
               <TableHead>Type</TableHead>
@@ -67,7 +67,7 @@ export function IocTable({ iocs }: { iocs: IndicatorOfCompromise[] }) {
                 <TableCell>
                   <Badge variant={confidenceVariant(ioc.confidence)}>{ioc.confidence}</Badge>
                 </TableCell>
-                <TableCell className="min-w-[220px] text-muted-foreground">{ioc.note}</TableCell>
+                <TableCell className="min-w-[220px] text-sm leading-5 text-muted-foreground">{ioc.note}</TableCell>
                 <TableCell className="text-right">
                   <Button
                     aria-label={`Copy ${ioc.type} indicator`}
