@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Filter, Radar, Search, SearchX, ShieldAlert, X } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 
 import { ThreatActorCard } from "@/components/dashboard/ThreatActorCard";
 import { Badge } from "@/components/ui/badge";
@@ -23,17 +22,32 @@ const severityFilters = buildFilterOptions(threatActors.map((actor) => actor.sev
 const typeFilters = buildFilterOptions(threatActors.map((actor) => actor.type));
 
 export function ActorDirectory() {
-  const searchParams = useSearchParams();
-  const urlQuery = searchParams.get("q") ?? "";
-
-  return <ActorDirectoryContent initialQuery={urlQuery} key={urlQuery} />;
+  return <ActorDirectoryContent />;
 }
 
-function ActorDirectoryContent({ initialQuery }: { initialQuery: string }) {
+function ActorDirectoryContent() {
   const [severity, setSeverity] = useState<FilterOption<Severity>>("All");
   const [actorType, setActorType] = useState<FilterOption<ThreatActorType>>("All");
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const applyUrlQuery = () => {
+      setQuery(new URLSearchParams(window.location.search).get("q") ?? "");
+    };
+    const applyGlobalSearch = (event: Event) => {
+      setQuery((event as CustomEvent<string>).detail ?? "");
+    };
+
+    applyUrlQuery();
+    window.addEventListener("popstate", applyUrlQuery);
+    window.addEventListener("threatscope:actor-search", applyGlobalSearch);
+
+    return () => {
+      window.removeEventListener("popstate", applyUrlQuery);
+      window.removeEventListener("threatscope:actor-search", applyGlobalSearch);
+    };
+  }, []);
 
   const filteredActors = useMemo(
     () => filterThreatActors(threatActors, { actorType, query, severity }),

@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 import { ActorDirectory } from "@/components/actors/ActorDirectory";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { dashboardStats } from "@/data/threat-actors";
@@ -23,9 +21,7 @@ export default function ActorsPage() {
         title="Actors"
       />
 
-      <Suspense fallback={null}>
-        <ActorDirectory />
-      </Suspense>
+      <ActorDirectory />
     </div>
   );
 }

@@ -25,6 +25,7 @@ export function Topbar() {
 
     if (pathname === "/actors") {
       router.replace(target, { scroll: false });
+      window.dispatchEvent(new CustomEvent("threatscope:actor-search", { detail: trimmedQuery }));
       window.requestAnimationFrame(() => {
         document.getElementById("actor-directory")?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
