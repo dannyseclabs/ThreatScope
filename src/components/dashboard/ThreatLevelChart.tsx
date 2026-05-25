@@ -22,6 +22,26 @@ const primaryType =
     ? actorTypeDistribution.reduce((top, item) => (item.value > top.value ? item : top))
     : null;
 
+function ActorTypeTooltip({
+  active,
+  payload,
+}: {
+  active?: boolean;
+  payload?: Array<{ name?: string; value?: number }>;
+}) {
+  const item = payload?.[0];
+
+  if (!active || !item) {
+    return null;
+  }
+
+  return (
+    <div className="rounded-md border border-border/80 bg-popover/95 px-2.5 py-1.5 text-xs font-medium text-popover-foreground shadow-panel">
+      {item.name} · {item.value} actors
+    </div>
+  );
+}
+
 export function ThreatLevelChart() {
   const isClient = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
@@ -60,15 +80,9 @@ export function ThreatLevelChart() {
               <PieChart margin={{ bottom: 8, left: 8, right: 8, top: 8 }}>
                 <Tooltip
                   cursor={false}
-                  contentStyle={{
-                    background: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
-                    boxShadow: "0 10px 28px rgba(0, 0, 0, 0.22)",
-                    color: "hsl(var(--popover-foreground))",
-                    fontSize: "12px",
-                  }}
-                  formatter={(value, name) => [`${value} actors`, name]}
+                  content={<ActorTypeTooltip />}
+                  position={{ x: 12, y: 12 }}
+                  wrapperStyle={{ outline: "none" }}
                 />
                 <Pie
                   cx="50%"

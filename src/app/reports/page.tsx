@@ -65,7 +65,7 @@ function ReportBriefCard({
         featured && "border-primary/25 bg-card/95",
       )}
     >
-      <CardHeader className="border-b border-border/60 pb-4">
+      <CardHeader className="border-b border-border/60 p-4 pb-3">
         <div className="flex items-start justify-between gap-4">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/25 bg-primary/10 text-primary">
             <FileText className="h-5 w-5" aria-hidden="true" />
@@ -83,11 +83,11 @@ function ReportBriefCard({
         <CardTitle className={cn("leading-tight", featured ? "text-2xl" : "text-lg")}>
           {report.title}
         </CardTitle>
-        <CardDescription>{report.description}</CardDescription>
+        <CardDescription className={cn(!featured && "line-clamp-2")}>{report.description}</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4 pt-5">
+      <CardContent className="space-y-3 p-4">
         {leadSection ? (
-          <p className={cn("text-pretty text-sm leading-6 text-muted-foreground", featured && "line-clamp-4")}>
+          <p className={cn("text-pretty text-sm leading-5 text-muted-foreground", featured ? "line-clamp-4" : "line-clamp-3")}>
             {leadSection.body}
           </p>
         ) : null}
@@ -120,16 +120,16 @@ export default function ReportsPage() {
   const [featuredReport, ...supportingReports] = reportPreviews;
 
   return (
-    <div className="mx-auto max-w-[1440px] space-y-6">
-      <section className="panel relative overflow-hidden p-5 sm:p-6 lg:p-7">
+    <div className="mx-auto max-w-[1440px] space-y-5">
+      <section className="panel relative overflow-hidden p-5 sm:p-6">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/55 to-transparent" />
-        <div className="grid gap-7 xl:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] xl:items-end">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(320px,380px)] xl:items-end">
           <div className="min-w-0">
             <p className="section-kicker">Intelligence reports</p>
-            <h1 className="mt-3 max-w-4xl text-balance text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
+            <h1 className="mt-3 max-w-4xl text-balance text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
               Briefing room for defensive decision support.
             </h1>
-            <p className="mt-4 max-w-3xl text-pretty text-base leading-7 text-muted-foreground">
+            <p className="mt-3 max-w-3xl text-pretty text-sm leading-6 text-muted-foreground sm:text-base">
               Curated local briefs turn the actor dataset into portfolio-safe summaries for risk
               review, technique coverage, and executive-ready context.
             </p>
@@ -165,7 +165,7 @@ export default function ReportsPage() {
         </div>
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+      <section className="grid gap-5 xl:grid-cols-[minmax(0,1.25fr)_minmax(300px,0.75fr)]">
         <Card className="overflow-hidden">
           <CardHeader className="border-b border-border/60 pb-4">
             <div className="flex items-start justify-between gap-4">
@@ -179,10 +179,10 @@ export default function ReportsPage() {
               </span>
             </div>
           </CardHeader>
-          <CardContent className="space-y-3 pt-5">
+          <CardContent className="space-y-3 p-4">
             {reportPreviews.map((report, index) => (
               <div
-                className="grid gap-3 rounded-lg border border-border/70 bg-muted/20 p-4 md:grid-cols-[48px_minmax(0,1fr)_auto] md:items-center"
+                className="grid gap-3 rounded-lg border border-border/70 bg-muted/20 p-3 md:grid-cols-[44px_minmax(0,1fr)_auto] md:items-center"
                 key={report.slug}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border/70 bg-background/35 font-mono text-xs font-semibold text-muted-foreground">
@@ -196,7 +196,7 @@ export default function ReportsPage() {
                   <h2 className="mt-2 text-base font-semibold leading-tight text-foreground">
                     {report.title}
                   </h2>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{report.description}</p>
+                  <p className="mt-1 line-clamp-2 text-sm leading-5 text-muted-foreground">{report.description}</p>
                 </div>
                 <Button asChild className="justify-between md:w-36" size="sm" variant="outline">
                   <Link href={`/reports/${report.slug}`}>
@@ -215,7 +215,7 @@ export default function ReportsPage() {
             <CardTitle className="text-xl">Briefing Health</CardTitle>
             <CardDescription>Portfolio-safe report status at a glance</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3 pt-5">
+          <CardContent className="space-y-3 p-4">
             {Object.entries(statusCounts).map(([status, count]) => (
               <div className="metadata-tile" key={status}>
                 <div className="flex items-center justify-between gap-3">
@@ -245,7 +245,7 @@ export default function ReportsPage() {
         </Card>
       </section>
 
-      <section className="grid gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
+      <section className="grid gap-5 xl:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
         {featuredReport ? <ReportBriefCard featured report={featuredReport} /> : null}
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-1">
           {supportingReports.map((report) => (

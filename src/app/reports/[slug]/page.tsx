@@ -59,7 +59,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
   }
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6">
+    <div className="mx-auto max-w-6xl space-y-5">
       <Button asChild variant="ghost">
         <Link href="/reports">
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -67,9 +67,9 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
         </Link>
       </Button>
 
-      <section className="panel relative overflow-hidden p-5 sm:p-6 lg:p-7">
+      <section className="panel relative overflow-hidden p-5 sm:p-6">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/55 to-transparent" />
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant={statusVariant(report.status)}>{report.status}</Badge>
@@ -78,7 +78,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
             <h1 className="mt-4 text-balance text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
               {report.title}
             </h1>
-            <p className="mt-3 max-w-3xl text-pretty text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
+            <p className="mt-3 max-w-3xl text-pretty text-sm leading-6 text-muted-foreground">
               {report.description}
             </p>
           </div>
@@ -113,11 +113,11 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
         </div>
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="space-y-4">
+      <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="space-y-3">
           {report.sections.map((section, index) => (
-            <Card key={section.title}>
-              <CardHeader className="border-b border-border/60 pb-4">
+            <Card className="overflow-hidden" key={section.title}>
+              <CardHeader className="border-b border-border/60 p-4 pb-3">
                 <div className="flex items-center gap-3">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-primary/25 bg-primary/10 font-mono text-xs font-semibold text-primary">
                     {String(index + 1).padStart(2, "0")}
@@ -125,19 +125,19 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
                   <CardTitle>{section.title}</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="pt-5">
-                <p className="text-pretty text-sm leading-6 text-muted-foreground">{section.body}</p>
+              <CardContent className="p-4">
+                <p className="text-pretty text-sm leading-5 text-muted-foreground">{section.body}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <Card className="h-fit">
+        <Card className="h-fit overflow-hidden lg:sticky lg:top-20">
           <CardHeader>
             <p className="section-kicker">Brief controls</p>
             <CardTitle>Review Metadata</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="space-y-3 p-4 pt-0">
             <div className="metadata-tile">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase text-muted-foreground">
                 <Target className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
@@ -152,7 +152,7 @@ export default async function ReportPage({ params }: { params: Promise<{ slug: s
               </div>
               <div className="mt-1 text-sm font-semibold text-foreground">Static local brief</div>
             </div>
-            <p className="text-sm leading-6 text-muted-foreground">
+            <p className="border-t border-border/70 pt-3 text-sm leading-5 text-muted-foreground">
               This safe portfolio artifact is not a live threat report, production intelligence
               assessment, or operational security instruction.
             </p>
