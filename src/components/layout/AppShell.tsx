@@ -5,16 +5,16 @@ import { Topbar } from "@/components/layout/Topbar";
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="app-surface relative min-h-dvh overflow-x-hidden">
+    <div className="app-surface relative min-h-dvh overflow-x-hidden xl:h-dvh xl:overflow-hidden">
       <a
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
         href="#main-content"
       >
         Skip to content
       </a>
-      <div className="relative z-10 flex min-h-dvh">
+      <div className="relative z-10 flex min-h-dvh xl:h-dvh xl:min-h-0">
         <Sidebar />
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-w-0 flex-1 flex-col xl:h-dvh xl:overflow-y-auto">
           <Topbar />
           <main className="flex-1 px-4 py-5 sm:px-6 sm:py-6 lg:px-8 xl:px-10" id="main-content">
             {children}

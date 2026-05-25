@@ -1,17 +1,10 @@
-"use client";
-
 import { Activity, Database, Shield } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-import { navItems } from "@/components/layout/nav-items";
-import { cn } from "@/lib/utils";
+import { SidebarNav } from "@/components/layout/SidebarNav";
 
 export function Sidebar() {
-  const pathname = usePathname();
-
   return (
-    <aside className="sticky top-0 hidden h-dvh w-72 shrink-0 border-r border-border/70 bg-background/80 backdrop-blur-xl xl:flex xl:flex-col">
+    <aside className="sticky top-0 hidden h-screen max-h-screen w-72 shrink-0 self-start overflow-y-auto border-r border-border/70 bg-background/80 backdrop-blur-xl xl:flex xl:flex-col">
       <div className="flex h-20 items-center gap-3 border-b border-border/70 px-5">
         <span className="relative flex h-11 w-11 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary shadow-panel">
           <span className="absolute inset-1 rounded-md border border-primary/15" aria-hidden="true" />
@@ -23,36 +16,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      <nav className="flex-1 space-y-1 px-3 py-5" aria-label="Primary navigation">
-        <div className="px-3 pb-2 text-[11px] font-semibold uppercase text-muted-foreground">
-          Command
-        </div>
-        {navItems.map((item) => {
-          const isActive =
-            item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-          return (
-            <Link
-              aria-current={isActive ? "page" : undefined}
-              className={cn(
-                "group relative flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-[background-color,border-color,color] duration-200 hover:bg-accent/80 hover:text-foreground",
-                isActive && "border border-primary/25 bg-accent/85 text-foreground shadow-panel",
-              )}
-              href={item.href}
-              key={item.label}
-            >
-              {isActive ? (
-                <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-primary" />
-              ) : null}
-              <item.icon
-                className={cn("h-4 w-4 transition-colors group-hover:text-primary", isActive && "text-primary")}
-                aria-hidden="true"
-              />
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
+      <SidebarNav />
 
       <div className="p-4">
         <div className="rounded-lg border border-border/70 bg-card/70 p-3 ring-1 ring-white/[0.025]">
